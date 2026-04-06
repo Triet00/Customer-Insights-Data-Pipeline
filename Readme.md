@@ -15,6 +15,7 @@ The pipeline demonstrates professional orchestration and analytics engineering:
 **Python/Pandas**: Performs the final data validation and top-tier customer reporting.
 
 📁 **Project Structure**
+
 Plaintext
 .
 ├── dags/
@@ -34,24 +35,26 @@ Plaintext
 
 ⚙️ **Pipeline Workflow**
 
-1. **Automated Ingestion*
+1. *Automated Ingestion*
+
 The Airflow BashOperator moves raw CSV files from the project root into the dbt seeds/ directory. This ensures the pipeline is self-contained and reproducible.
 
 2. *Transformations with dbt*
+
 The pipeline follows the Medallion Architecture logic:
 
-Staging: Cleaning and renaming raw sources (stg_customers, etc.).
++ Staging: Cleaning and renaming raw sources (stg_customers, etc.).
 
-Intermediate: Combining orders and payments to calculate revenue.
++ Intermediate: Combining orders and payments to calculate revenue.
 
-Marts: Final business-ready tables (dim_customers, fct_orders).
++ Marts: Final business-ready tables (dim_customers, fct_orders).
 
 3. *Data Quality & Integrity*
 Every run includes automated dbt tests:
 
-unique and not_null constraints on primary keys.
++ unique and not_null constraints on primary keys.
 
-Referential integrity (Relationship tests) between orders and customers.
++ Referential integrity (Relationship tests) between orders and customers.
 
 📊 **Final Output: Top 10 Most Valuable Customers**
 The pipeline culminates in a Lifetime Value (LTV) report:
