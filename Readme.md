@@ -19,18 +19,31 @@ The pipeline demonstrates professional orchestration and analytics engineering:
 Plaintext
 .
 ├── dags/
+
 │   └── dbt_pipeline_dag.py        # Airflow DAG (TaskFlow API)
+
 ├── jaffle_shop_duckdb/            # Core dbt Project folder
+
 │   ├── models/                    # Staging, Intermediate, and Mart SQL
+
 │   ├── seeds/                     # Target directory for raw data ingestion
+
 │   └── dbt_project.yml            # dbt configuration
+
 ├── raw_customers.csv              # Source Data
+
 ├── raw_orders.csv
+
 ├── raw_payments.csv
+
 ├── analysis/
+
 │   └── top_customers_query.py     # Final DuckDB analysis script
+
 ├── Dockerfile                     # Containerization for Airflow/dbt
+
 ├── docker-compose.yaml            # Multi-container orchestration
+
 └── requirements.txt               # Python dependencies
 
 ⚙️ **Pipeline Workflow**
@@ -50,6 +63,7 @@ The pipeline follows the Medallion Architecture logic:
 + Marts: Final business-ready tables (dim_customers, fct_orders).
 
 3. *Data Quality & Integrity*
+
 Every run includes automated dbt tests:
 
 + unique and not_null constraints on primary keys.
@@ -57,6 +71,7 @@ Every run includes automated dbt tests:
 + Referential integrity (Relationship tests) between orders and customers.
 
 📊 **Final Output: Top 10 Most Valuable Customers**
+
 The pipeline culminates in a Lifetime Value (LTV) report:
 
 Rank	Customer	Total Lifetime Value
@@ -65,16 +80,19 @@ Rank	Customer	Total Lifetime Value
 3	Billy L.	4700.0
 
 🛠️ **Technologies Used**
-Orchestration: Apache Airflow 2.10+
 
-Transformations: dbt-duckdb
++ Orchestration: Apache Airflow 2.10+
 
-Database: DuckDB
++ Transformations: dbt-duckdb
 
-Environment: Python 3.12, WSL2 / Docker
++ Database: DuckDB
+
++ Environment: Python 3.12, WSL2 / Docker
 
 ▶️ **How to Run**
-Option A: Local Setup (WSL/Linux)
+
+Local Setup (WSL/Linux)
+
 Clone & Install:
 
 Bash
@@ -100,9 +118,10 @@ docker-compose up --build
 Access the Airflow UI at localhost:8080.
 
 📈 **Challenges Overcome**
-Path Resolution: Configured dynamic workspace rooting to bridge the gap between Windows/WSL and dbt project-dirs.
 
-Metadata Management: Resolved Airflow serialization conflicts by implementing a clean metadata reset and custom DAG bundling strategy.
++ Path Resolution: Configured dynamic workspace rooting to bridge the gap between Windows/WSL and dbt project-dirs.
+
++ Metadata Management: Resolved Airflow serialization conflicts by implementing a clean metadata reset and custom DAG bundling strategy.
 
 🙌 **Acknowledgements**
 The Jaffle Shop dataset provided by dbt Labs.
