@@ -75,8 +75,11 @@ Every run includes automated dbt tests:
 The pipeline culminates in a Lifetime Value (LTV) report:
 
 Rank	Customer	Total Lifetime Value
+
 1	Howard R.	9900.0
+
 2	Kathleen P.	6500.0
+
 3	Billy L.	4700.0
 
 🛠️ **Technologies Used**
